@@ -4,20 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Movie Finder</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
-    <link href="index.js" type="javascript" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
     <div>
       <input placeholder="movie title"/>
       <button onclick="searchMovie()">Search</button>  
     </div>
+    <div class="movies"></div>
     
-    <img id="poster"/>
-    <p>Title: <span id="title"></span></p>
-    <p>Year: <span id="year"></span></p>
-    <p>Actors: <span id="actors"></span></p>
-    <p>Plot: <span id="plot"></span></p>
-    <script src="index.js"></script>
   </body>
 </html>

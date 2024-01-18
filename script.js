@@ -3,13 +3,19 @@ httpRequest.onload = function() {
   if (httpRequest.readyState === XMLHttpRequest.DONE) {
     if (httpRequest.status === 200) {
       console.log(httpRequest.responseText);
-      var movie = JSON.parse(httpRequest.responseText);
-      
-      document.getElementById("poster").src = movie.Poster;
-      document.getElementById("title").innerHTML = movie.Title;
-      document.getElementById("year").innerHTML = movie.Year;
-      document.getElementById("actors").innerHTML = movie.Actors;
-      document.getElementById("plot").innerHTML = movie.Plot;
+      var movies = JSON.parse(httpRequest.responseText);
+      console.log( 'movies object' + movies)
+      movies.Search.forEach(function(movie){
+        console.log(movie)
+        $('.movies').append(
+        '<div>' +
+        `<img id="poster" src=${movie.Poster}/>` +
+        '<p>Title: <span id="title">' + movie.Title +'</span></p>' +
+        '<p>Year: <span id="year"></span>' + movie.Year + '</p>' +
+        '<p>Actors: <span id="actors">' + movie.Actors +'</span></p>' +
+        '<p>Plot: <span id="plot"></span>' +movie.Plot + '</p>' +
+        '</div>');
+      })
     } else {
       console.log(httpRequest.statusText);
     }
@@ -21,8 +27,9 @@ httpRequest.onerror = function() {
 
 var searchMovie = function () {
   var input = document.querySelector('input').value;
+  console.log(input);
   if (input) {
-    httpRequest.open('GET', 'https://www.omdbapi.com/?t=' + input + '&plot=short&apikey=b7da8d63');
-    httpRequest.send(null);
+    httpRequest.open('GET', 'https://www.omdbapi.com/?s=' + input + '&plot=short&apikey=b7da8d63');
+    httpRequest.send();
   }
 }
